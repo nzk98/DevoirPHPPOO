@@ -35,10 +35,20 @@ $form->addField("file_upload", "file", "télécharger un fichier", [
 ]);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" || $_SERVER["REQUEST_METHOD"] === "GET") {
-    if ($form->handleSubmission()) {
-        echo "<p style='color: green;'>Le formulaire a été soumis avec succès !</p>";
-    } else {
-        echo "<p style='color: red;'>Veuillez corriger les erreurs ci-dessous.</p>";
+    if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['lettre']) && !empty($_POST['file_upload']))
+    {
+        if ($form->handleSubmission()) {
+            echo "<p style='color: green;'>Le formulaire a été soumis avec succès !</p>";
+        } else {
+            echo "<p style='color: red;'>Veuillez corriger les erreurs ci-dessous.</p>";
+        }
+    }elseif(!empty($_GET['name']) && !empty($_GET['email']) && !empty($_GET['lettre']))
+    {
+        if ($form->handleSubmission()) {
+            echo "<p style='color: green;'>Le formulaire a été soumis avec succès !</p>";
+        } else {
+            echo "<p style='color: red;'>Veuillez corriger les erreurs ci-dessous.</p>";
+        }
     }
 }
 
